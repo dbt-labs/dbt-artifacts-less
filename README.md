@@ -1,3 +1,15 @@
+# dbt Artifacts Less Package
+
+Changes the dimensional models (exposures, models, seeds, snapshots, sources, tests)
+from always inserting every node each time a command is run, to only inserting if it has changed since the last run.
+Lots of macros have been edited and I removed all other stg and dim/fct models in favor of building out snapshots and marts in the actual dbt project, so I can run those models less frequently.
+
+This requires a snapshot (in your own project) to capture changes over time, but results in much, much smaller source tables.
+See https://github.com/dbt-labs/dbt-proserv for examples there.
+
+**Why did we do this?**
+An example customer has 2 Billion rows in their `tests` source model and 200 Million in their `models` source model. This is insane given they currently have 653 models and 6050 data tests.
+
 # dbt Artifacts Package
 
 This package builds a mart of tables and views describing the project it is installed in. In pre V1 versions of the package, the artifacts dbt produces were uploaded to the warehouse, hence the name of the package. That's no longer the case, but the name has stuck!
@@ -14,29 +26,7 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for mor
 
 The package currently supports
 
-- Databricks :white_check_mark:
-- Spark :white_check_mark:
 - Snowflake :white_check_mark:
-- Google BigQuery :white_check_mark:
-- Postgres :white_check_mark:
-- SQL Server :white_check_mark:
-
-Models included:
-
-```
-dim_dbt__current_models
-dim_dbt__exposures
-dim_dbt__models
-dim_dbt__seeds
-dim_dbt__snapshots
-dim_dbt__sources
-dim_dbt__tests
-fct_dbt__invocations
-fct_dbt__model_executions
-fct_dbt__seed_executions
-fct_dbt__snapshot_executions
-fct_dbt__test_executions
-```
 
 See the generated [dbt docs site](https://brooklyn-data.github.io/dbt_artifacts/#!/overview) for documentation on each model.
 
