@@ -36,8 +36,8 @@ See the generated [dbt docs site](https://brooklyn-data.github.io/dbt_artifacts/
 
 ```
 packages:
-  - package: brooklyn-data/dbt_artifacts
-    version: 2.7.0
+  - git: "https://github.com/dbt-labs/dbt-artifacts-less.git" # git URL
+    revision: "main"
 ```
 
 :construction_worker: Make sure to fix at least the **minor** version, to avoid issues when a new release is open. See the notes on upgrading below for more detail.
