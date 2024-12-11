@@ -10,6 +10,9 @@ See https://github.com/dbt-labs/dbt-proserv for examples there.
 **Why did we do this?**
 An example customer has 2 Billion rows in their `tests` source model and 200 Million in their `models` source model. This is insane given they currently have 653 models and 6050 data tests.
 
+[Video walkthrough](https://dbtlabs.zoom.us/clips/share/A2F3MRYxRGsyMGtldVRQZWlfR1hzMGRYMFV3AQ)
+utilizing downstream models from [dbt-proserv](https://github.com/dbt-labs/dbt-proserv)
+
 # dbt Artifacts Package
 
 This package builds a mart of tables and views describing the project it is installed in. In pre V1 versions of the package, the artifacts dbt produces were uploaded to the warehouse, hence the name of the package. That's no longer the case, but the name has stuck!
