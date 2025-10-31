@@ -60,7 +60,7 @@ jobs:
 
     steps:
       - name: Get latest release
-        uses: rez0n/actions-github-release@main
+        uses: rez0n/actions-github-release@794c12f5e8d629e6ca329cf2e2daeb0f0ce6a3ce  # rez0n/actions-github-release@main
         id: latest_release
         env:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -68,11 +68,11 @@ jobs:
           type: "stable"
 
       - name: Checkout latest release
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ steps.latest_release.outputs.release }}
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c  # actions/setup-python@v4
         with:
           python-version: "3.8.x"
           architecture: "x64"
@@ -82,7 +82,7 @@ jobs:
 
       - id: auth-on-release
         if: ${{ matrix.warehouse == 'bigquery' }}
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@3a3c4c57d294ef65efaaee4ff17b22fa88dd3c69  # google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
@@ -93,14 +93,14 @@ jobs:
         run: tox -e integration_${{ matrix.warehouse }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
 
       # Need to get the auth file again
       - id: auth-on-pr
         if: ${{ matrix.warehouse == 'bigquery' }}
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@3a3c4c57d294ef65efaaee4ff17b22fa88dd3c69  # google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
@@ -137,7 +137,7 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c  # actions/setup-python@v4
         with:
           python-version: "3.8.x"
           architecture: "x64"
@@ -152,14 +152,14 @@ jobs:
         run: sudo ACCEPT_EULA=Y apt-get install msodbcsql18 -y
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
 
       # Need to get the auth file again
       - id: auth-on-pr
         if: ${{ matrix.warehouse == 'bigquery' }}
-        uses: google-github-actions/auth@v1
+        uses: google-github-actions/auth@3a3c4c57d294ef65efaaee4ff17b22fa88dd3c69  # google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
@@ -202,12 +202,12 @@ jobs:
       name: Approve Integration Tests
 
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c  # actions/setup-python@v4
         with:
           python-version: "3.8.x"
           architecture: "x64"
       - name: Install SQL Server
-        uses: Particular/install-sql-server-action@v1.2.0
+        uses: Particular/install-sql-server-action@8278762a32b27b60a37ef7617ba022895ee71f96  # Particular/install-sql-server-action@v1.2.0
         with:
           connection-string-env-var: SQL_SERVER_CONNECTION_STRING
           catalog: dbt_artifact_integrationtests
@@ -224,7 +224,7 @@ jobs:
         run: sudo ACCEPT_EULA=Y apt-get install msodbcsql18 -y
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
 
@@ -245,12 +245,12 @@ jobs:
           name: Approve Integration Tests
 
     steps:
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c  # actions/setup-python@v4
         with:
           python-version: "3.8.x"
           architecture: "x64"
       - name: Install SQL Server
-        uses: Particular/install-sql-server-action@v1.2.0
+        uses: Particular/install-sql-server-action@8278762a32b27b60a37ef7617ba022895ee71f96  # Particular/install-sql-server-action@v1.2.0
         with:
           connection-string-env-var: SQL_SERVER_CONNECTION_STRING
           catalog: dbt_artifact_integrationtests
@@ -265,7 +265,7 @@ jobs:
       - name: Install Microsoft ODBC
         run: sudo ACCEPT_EULA=Y apt-get install msodbcsql18 -y
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
       - name: Run Tests on PR

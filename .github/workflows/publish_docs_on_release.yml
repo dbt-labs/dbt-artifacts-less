@@ -36,7 +36,7 @@ jobs:
 
     steps:
       - name: Checkout Branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
 
       - name: Install Python packages
         run: python -m pip install dbt-snowflake~=1.8.0
@@ -52,6 +52,6 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@6c2d9db40f9296374acc17b90404b6e8864128c8  # JamesIves/github-pages-deploy-action@v4
         with:
           folder: target

@@ -39,12 +39,12 @@ jobs:
 
     steps:
       - name: Checkout Branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744  # actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }} # Check out the code of the PR
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@7f4fc3e22c37d6ff65e88745f38bd3157c663f7c  # actions/setup-python@v4
         with:
           python-version: "3.9.x"
           architecture: "x64"
@@ -60,7 +60,7 @@ jobs:
 
       - name: Get changed files
         id: get_file_changes
-        uses: trilom/file-changes-action@v1.2.4
+        uses: trilom/file-changes-action@a6ca26c14274c33b15e6499323aac178af06ad4b  # trilom/file-changes-action@v1.2.4
         with:
           output: " "
 
@@ -89,7 +89,7 @@ jobs:
         run: sqlfluff lint --format github-annotation --annotation-level failure --nofail ${{ steps.get_files_to_lint.outputs.lintees }} --write-output annotations.json
 
       - name: Annotate
-        uses: yuzutech/annotations-action@v0.4.0
+        uses: yuzutech/annotations-action@3aa369f1f03cc794a39fe41608dfa004654974d0  # yuzutech/annotations-action@v0.4.0
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           title: "SQLFluff Lint"
