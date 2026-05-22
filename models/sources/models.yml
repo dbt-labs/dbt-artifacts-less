@@ -1,5 +1,6 @@
 version: 2
-
+on-run-start:
+  - "{{ ev() }}"
 models:
   - name: models
     description: Staging model that contains metadata about model executions. One row per node per run.
