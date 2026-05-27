@@ -2,9 +2,7 @@ name: CI test package
 
 on:
   workflow_dispatch:
-  # all PRs, important to note that `pull_request_target` workflows
-  # will run in the context of the target branch of a PR
-  pull_request_target:
+  pull_request:
 
 env:
   # These are configured in GitHub secrets
